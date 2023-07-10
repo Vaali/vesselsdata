@@ -1,6 +1,6 @@
 import sqlite3
 import pandas as pd
-dbname = "aisdata.db"
+dbname = "aisdata_new.db"
 
 def create_table():
     conn = sqlite3.connect(dbname)
