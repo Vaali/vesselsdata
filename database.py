@@ -62,3 +62,18 @@ def push_data(data):
     # cursor.execute(sql, row)
     # conn.commit()
     conn.close()
+
+def get_data(date):
+   conn = sqlite3.connect(dbname)
+   table_name = "vessels"
+   # Execute SQL query and retrieve data into a list of tuples
+   cursor = conn.cursor()
+   cursor.execute('SELECT vessel_name,lat,long,DATE(datetime) as date, time(datetime) as time FROM '+table_name +' where date like "'+date+'"')
+   rows = cursor.fetchall()
+   
+   # Get column names from the cursor's description
+   columns = [desc[0] for desc in cursor.description]
+   # Close the cursor and the database connection
+   cursor.close()
+   conn.close()
+   return (columns,rows)
